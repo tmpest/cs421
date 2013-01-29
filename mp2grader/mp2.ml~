@@ -5,7 +5,7 @@ open Mp2common
    You will need a function to process a list of expressions. *)
 
 let rec removeExistingId lis curr = match lis with
-		h::t	->	if h = curr then t else h::(removeExisting t curr)
+		h::t	->	if h = curr then t else h::(removeExistingId t curr)
 	|	[]	->	[];;
 
 let rec alldeclaredExp vars e = match e with

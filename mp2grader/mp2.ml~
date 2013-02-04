@@ -12,16 +12,15 @@ let rec checkDecList decLst vars var n = if n >= List.length vars then decLst
 		else if (List.nth vars n) = var then setDecTrue decLst n 
 		else checkDecList decLst vars var (n + 1);; 
 
-
+let rec alldecExpLst vars decLst el = match el with
+		h::t	->	let lst = alldeclaredExpWraped vars decLst h in alldecExpLst vars lst t
+	|	[]		->	decLst;;
 
 let rec alldeclaredExpWraped vars e decLst = match e with
           Operation(e1,_,e2) -> let lst = alldeclaredExpWraped vars e1 decLst in alldeclaredExpWraped vars e2 lst
         | Subscript(e1,e2) -> let lst = alldeclaredExpWraped vars e1 decLst in alldeclaredExpWraped vars e2 lst
         | Length(e1) -> alldeclaredExpWraped vars e1 decLst
-        | MethodCall(e1,_,el) -> let lst = alldeclaredExpWraped vars e1 decLst in 
-        	let rec alldecExpLst vars lst el = match el with
-					h::t	->	let decList = alldeclaredExpWraped vars lst h in alldecExpLst vars decList t
-				|	[]		->	lst;;
+        | MethodCall(e1,_,el) -> let lst = alldeclaredExpWraped vars e1 decLst in alldecExpLst vars lst el
         | FieldRef(e1,_) -> alldeclaredExpWraped vars e1 decLst 
         | NewArray(_,e1) -> alldeclaredExpWraped vars e1 decLst
         | Not(e1) -> alldeclaredExpWraped vars e1 decLst

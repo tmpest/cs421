@@ -70,7 +70,7 @@ let ( && ) (pic1:picture) (pic2:picture) : picture
 (* Problem 4: Combine a list of pictures, using &&.  Do *not* use
               recursion directly; use fold_left in List module *)
 let join_list (piclis: picture list) 
-   = fun a -> List.fold_left && piclis a (* 1 line *)
+   = List.fold_left ( && ) emptypic piclis (* 1 line *)
 
 (* Latex output *)
 
@@ -126,7 +126,10 @@ type linefun = point -> point -> picture
               line from (1.0,1.0) to (3.0,3.0). *)
               
 let shorten (lf:linefun) : linefun
-  = raise NotImplemented  (* 5 lines *)
+  = fun ((x1, y1):point) ((x2, y2):point) -> 
+      let delta = ((x2 -. x1) *. 0.25, (y2 -. y1) *. 0.25) in
+              lf ((x1, y1) ++ delta) ((x2, y2) -- delta) 
+  (* 5 lines *) 
 
 type tree = picture * float * float (* picture with height and width *)
 

@@ -563,3 +563,14 @@
 \put(0.434,0.872){\line(0.121,-0.003){0.121}}
 \put(0.555,0.867){\line(-0.057,0.113){0.057}}
 \put(0.503,0.986){\line(-0.074,-0.119){0.074}}
+[0 / 3] sierp2 (student solution returns an incorrect value)
+[0 / 3] sierp3 (student solution returns an incorrect value)
+[4 / 4] tree2 (correct)
+[4 / 4] tree4 (correct)
+[4 / 4] tree6 (correct)
+[0 / 4] tree8 (student solution returns an incorrect value)
+[0 / 4] tree10 (student solution returns an incorrect value)
+[0 / 4] tree11 (student solution returns an incorrect value)
+
+Total: [12 / 30]
+Extra: [0 / 0]
